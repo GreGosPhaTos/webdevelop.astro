@@ -1,23 +1,329 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  lang?: string;
+}
+
+const {
+  title = 'WebDevelop | Développeur Fullstack',
+  description = "Développeur spécialisé dans l'éco-conception web et les interfaces durables",
+  keywords = 'Adrien Petitjean, développeur web, PHP, SQL, nodeJs, JavaScript, AJAX, web',
+  lang = 'fr',
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="content-language" content={lang} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="dc.description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="webdevelop" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Robots & Indexing -->
+    <meta name="ROBOTS" content="index, follow" />
+    <meta name="Revisit-after" content="7 days" />
+    <meta name="rating" content="general" />
+
+    <!-- Verification Tags -->
+    <meta
+      name="verify-v1"
+      content="1LpYuCxQDl9iWbr66GRZhqUQUuMlRaX6fNkHpNekeA4="
+    />
+    <meta name="y_key" content="f1b1ecf1d1f8026f" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Google Fonts - Typographie premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N692VP2XPT"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-N692VP2XPT');
+    </script>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  /* ============================================
+     SYSTÈME DE DESIGN MINIMALISTE 2026
+     ============================================ */
+
+  :root {
+    /* Palette Premium - Deep Midnight & Indigo */
+    --color-bg: #030712;
+    --color-surface: #111827;
+    --color-surface-glass: rgba(17, 24, 39, 0.7);
+    --color-text-primary: #f9fafb;
+    --color-text-secondary: #9ca3af;
+    --color-text-tertiary: #6b7280;
+    --color-accent: #6366f1; /* Indigo */
+    --color-accent-glow: rgba(99, 102, 241, 0.5);
+    --color-border: rgba(255, 255, 255, 0.1);
+
+    /* Typographie */
+    --font-sans:
+      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+
+    /* Spacing System */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Effects */
+    --glass-blur: 12px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Light mode override (optional, but keeping it elegant) */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --color-bg: #f8fafc;
+      --color-surface: #ffffff;
+      --color-surface-glass: rgba(255, 255, 255, 0.8);
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #475569;
+      --color-text-tertiary: #94a3b8;
+      --color-accent: #4f46e5;
+      --color-accent-glow: rgba(79, 70, 229, 0.3);
+      --color-border: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  /* Reset & Base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bg);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+  }
+
+  /* Main background mesh gradient */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background:
+      radial-gradient(
+        circle at 0% 0%,
+        rgba(99, 102, 241, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 100% 100%,
+        rgba(139, 92, 246, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(15, 23, 42, 0.8) 0%,
+        var(--color-bg) 100%
+      );
+    filter: contrast(120%);
+  }
+
+  /* Improved grain for premium feel */
+  .grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.03;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+  }
+
+  /* Typographie */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  p {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    font-weight: 300;
+  }
+
+  /* Liens minimalistes avec animation subtile */
+  a {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* Boutons minimalistes */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border: 1px solid var(--color-border);
+    background: transparent;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--color-accent);
+    transition: width var(--transition-base);
+    z-index: -1;
+  }
+
+  .btn:hover::before {
+    width: 100%;
+  }
+
+  .btn:hover {
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+  }
+
+  .btn-primary::before {
+    background: var(--color-bg);
+  }
+
+  .btn-primary:hover {
+    color: var(--color-accent);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  /* Animations au scroll */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp var(--transition-slow) ease-out forwards;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    :root {
+      --space-xl: 3rem;
+      --space-2xl: 4rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
 </style>

@@ -1,0 +1,186 @@
+---
+// Navigation minimaliste avec switcher de langue
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'fr' } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav">
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <span class="logo-text">WebDevelop</span>
+    </a>
+
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href={lang === 'en' ? '/en#about' : '/#about'} class="nav-link"
+          >{lang === 'en' ? 'About' : 'À propos'}</a
+        >
+        <a href={lang === 'en' ? '/en#projects' : '/#projects'} class="nav-link"
+          >{lang === 'en' ? 'Projects' : 'Projets'}</a
+        >
+        <a href={lang === 'en' ? '/en#contact' : '/#contact'} class="nav-link"
+          >Contact</a
+        >
+      </div>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher">
+        <a
+          href="/"
+          class:list={['lang-link', { active: lang === 'fr' }]}
+          title="Français">FR</a
+        >
+        <span class="lang-separator">/</span>
+        <a
+          href="/en"
+          class:list={['lang-link', { active: lang === 'en' }]}
+          title="English">EN</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 3rem);
+    max-width: 1200px;
+    z-index: 1000;
+    background: var(--color-surface-glass);
+    border: var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: 100px;
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-premium);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    transition: opacity var(--transition-fast);
+  }
+
+  .logo:hover {
+    opacity: 0.7;
+  }
+
+  .logo-text {
+    letter-spacing: -0.02em;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  .nav-link {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-text-primary);
+    transition: width var(--transition-base);
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Language Switcher */
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-left: var(--space-md);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .lang-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    transition: color var(--transition-fast);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .lang-link.active {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  .lang-separator {
+    color: var(--color-border);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .nav-right {
+      gap: var(--space-md);
+    }
+
+    .nav-links {
+      gap: var(--space-sm);
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+    }
+
+    .lang-switcher {
+      padding-left: var(--space-sm);
+    }
+
+    .lang-link {
+      font-size: 0.75rem;
+    }
+  }
+</style>
