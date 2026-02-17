@@ -8,7 +8,7 @@ const { lang = 'fr' } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
-<nav class="nav">
+<nav class="nav" id="main-nav">
   <div class="nav-container">
     <a href="/" class="logo">
       <span class="logo-text">WebDevelop</span>
@@ -45,6 +45,20 @@ const currentPath = Astro.url.pathname;
   </div>
 </nav>
 
+<script>
+  const nav = document.getElementById('main-nav');
+
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  }
+</script>
+
 <style>
   .nav {
     position: fixed;
@@ -62,6 +76,13 @@ const currentPath = Astro.url.pathname;
     box-shadow: var(--shadow-premium);
   }
 
+  .nav.scrolled {
+    top: 0.75rem;
+    padding: 0.25rem 0;
+    background: rgba(17, 24, 39, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -69,6 +90,11 @@ const currentPath = Astro.url.pathname;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: padding var(--transition-base);
+  }
+
+  .nav.scrolled .nav-container {
+    padding: var(--space-sm) var(--space-md);
   }
 
   .logo {
@@ -76,7 +102,11 @@ const currentPath = Astro.url.pathname;
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    transition: opacity var(--transition-fast);
+    transition: all var(--transition-base);
+  }
+
+  .nav.scrolled .logo {
+    font-size: 1.25rem;
   }
 
   .logo:hover {
@@ -159,6 +189,15 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 768px) {
+    .nav {
+      top: 1rem;
+      width: calc(100% - 2rem);
+    }
+
+    .nav.scrolled {
+      top: 0.5rem;
+    }
+
     .nav-container {
       padding: var(--space-sm) var(--space-md);
     }
