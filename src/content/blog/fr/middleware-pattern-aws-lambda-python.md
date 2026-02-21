@@ -91,4 +91,4 @@ Pour résumer, l'implémentation du pattern middleware avec les décorateurs Pyt
 - On peut terminer le cycle middleware en levant une exception par exemple.
 - Appeler la prochaine fonction middleware dans la chaîne, en appelant simplement le handler depuis le décorateur.
 
-Voilà, c'est tout ! J'espère que cet article vous a plu, n'hésitez pas à commenter et à partager vos réflexions.
+Voilà! J'espère que cet article vous a plu, n'hésitez pas à commenter et à partager vos réflexions.
