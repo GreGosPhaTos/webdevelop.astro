@@ -78,12 +78,12 @@
 
     // Command Handling
     const commands = {
-      help: 'Available commands: about, projects, contact, theme [neon|cyber|default], clear, exit',
+      help: 'Available commands: about, projects, contact, theme [neon|cyber|mono|light|default], clear, exit',
       about:
         'Staff Software Engineer. 15+ years. Builder of resilient systems.',
       projects:
         'Check out the "Selected Work" section or try `ls projects` (just kidding, go scroll).',
-      contact: 'Email me at adrien.petitjean84@gmail.com',
+      contact: 'Email me at adrien@webdevelop.fr',
       clear: 'clear',
       exit: 'exit',
       sudo: 'User is not in the sudoers file. This incident will be reported.',
@@ -107,26 +107,14 @@
           response = commands[cmd as keyof typeof commands];
         } else if (cmd.startsWith('theme ')) {
           const theme = cmd.split(' ')[1];
-          if (theme === 'neon') {
-            document.documentElement.style.setProperty(
-              '--color-accent',
-              '#39ff14',
-            );
-            response = 'Theme set to Neon Lime.';
-          } else if (theme === 'cyber') {
-            document.documentElement.style.setProperty(
-              '--color-accent',
-              '#ff00ff',
-            );
-            response = 'Theme set to Cyber Pink.';
+          if (['neon', 'cyber', 'mono', 'light'].includes(theme)) {
+            document.documentElement.dataset.theme = theme;
+            response = `Theme set to ${theme.charAt(0).toUpperCase() + theme.slice(1)}.`;
           } else if (theme === 'default') {
-            document.documentElement.style.setProperty(
-              '--color-accent',
-              '#818cf8',
-            );
-            response = 'Theme restored.';
+            delete document.documentElement.dataset.theme;
+            response = 'Theme restored to default.';
           } else {
-            response = 'Unknown theme. Try: neon, cyber, default';
+            response = 'Unknown theme. Try: neon, cyber, mono, light, default';
           }
         } else if (cmd === 'clear') {
           // Handled below

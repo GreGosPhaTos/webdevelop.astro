@@ -1,17 +1,66 @@
 {
   "meta": {
     "title": "Adrien Petitjean — Staff Software Engineer",
-    "description": "Staff Software Engineer chez Lightspeed. Architecture de systèmes résilients et pilotage de stratégie technique."
+    "description": "Staff Software Engineer chez Lightspeed. Architecture de systèmes résilients et pilotage de stratégie technique.",
+    "keywords": "Adrien Petitjean, Staff Software Engineer, Lightspeed, Unity, développeur full-stack, architecture systèmes, stratégie technique, NestJS, TypeScript"
   },
   "hero": {
     "firstName": "Adrien",
     "lastName": "Petitjean",
-    "tagline": "Staff Software Engineer @<a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>.<br />Architecte de systèmes résilients et stratégie technique.<br />Précédemment chez Unity et Shutterstock."
+    "tagline": "Staff Software Engineer @<a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>.<br />Architecte de systèmes résilients et stratégie technique.<br />Précédemment chez Unity et Shutterstock.",
+    "glitchVerbs": ["Construire", "Créer", "Concevoir", "Évoluer", "Déployer", "Résoudre"]
   },
   "sections": {
     "articles": "Articles",
     "works": "Travaux & Projets"
   },
+  "projects": [
+    {
+      "name": "Pik (WIP)",
+      "description": "Extension Chrome pour le traitement d'images. Rust / WASM.",
+      "url": "https://github.com/GreGosPhaTos/pik"
+    },
+    {
+      "name": "Bigfile",
+      "description": "CLI qui trouve les fichiers volumineux sur votre système. Python.",
+      "url": "https://github.com/GreGosPhaTos/bigfile"
+    },
+    {
+      "name": "Zippy",
+      "description": "Outil d'archivage construit avec Electron.",
+      "url": "https://github.com/GreGosPhaTos/zippy"
+    },
+    {
+      "name": "AWS Lambdas + TypeScript",
+      "description": "Template pour AWS Lambdas avec TypeScript.",
+      "url": "https://github.com/GreGosPhaTos/typescript-lambda"
+    },
+    {
+      "name": "NestJS",
+      "description": "Contributeur principal à l'écosystème du framework.",
+      "url": "https://github.com/nestjs/nest"
+    },
+    {
+      "name": "Medium",
+      "description": "Articles techniques et notes de terrain.",
+      "url": "https://medium.com/@adrien.petitjean84"
+    },
+    {
+      "name": "CodePen",
+      "description": "Expériences front-end et démos.",
+      "url": "https://codepen.io/GreGosPhaTos"
+    },
+    {
+      "name": "Ce site",
+      "description": "webdevelop — Astro, minimal, sans tracking.",
+      "url": "https://github.com/GreGosPhaTos/webdevelop.astro"
+    },
+    {
+      "name": "Emma Roussel Naturopathe",
+      "description": "Site web pour cabinet de naturopathie.",
+      "url": "https://emma-roussel-naturopathe.com/"
+    }
+  ],
   "footer": {
     "copy": "© 2026 Adrien Petitjean. Build v3.2.0"
   }

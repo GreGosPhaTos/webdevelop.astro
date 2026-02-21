@@ -17,16 +17,23 @@ const homepageCollection = defineCollection({
     meta: z.object({
       title: z.string(),
       description: z.string(),
+      keywords: z.string().optional(),
     }),
     hero: z.object({
       firstName: z.string(),
       lastName: z.string(),
       tagline: z.string(),
+      glitchVerbs: z.array(z.string()),
     }),
     sections: z.object({
       articles: z.string(),
       works: z.string(),
     }),
+    projects: z.array(z.object({
+      name: z.string(),
+      description: z.string(),
+      url: z.string(),
+    })),
     footer: z.object({
       copy: z.string(),
     }),
@@ -37,3 +44,4 @@ export const collections = {
   blog: blogCollection,
   homepage: homepageCollection,
 };
+

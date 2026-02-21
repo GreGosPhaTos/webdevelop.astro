@@ -1,17 +1,66 @@
 {
   "meta": {
     "title": "Adrien Petitjean — Staff Software Engineer",
-    "description": "Staff Software Engineer at Lightspeed. Building resilient systems and technical strategies."
+    "description": "Staff Software Engineer at Lightspeed. Building resilient systems and technical strategies.",
+    "keywords": "Adrien Petitjean, Staff Software Engineer, Lightspeed, Unity, full-stack developer, system architecture, technical strategy, NestJS, TypeScript"
   },
   "hero": {
     "firstName": "Adrien",
     "lastName": "Petitjean",
-    "tagline": "Staff Software Engineer @ <a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>. Architecting resilient systems and leading technical strategy through 15 years of scale."
+    "tagline": "Staff Software Engineer @ <a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>. Architecting resilient systems and leading technical strategy through 15 years of scale.",
+    "glitchVerbs": ["Build", "Create", "Design", "Scale", "Ship", "Solve"]
   },
   "sections": {
     "articles": "Articles",
     "works": "Works & Projects"
   },
+  "projects": [
+    {
+      "name": "Pik (WIP)",
+      "description": "Chrome extension for image processing. Rust / WASM.",
+      "url": "https://github.com/GreGosPhaTos/pik"
+    },
+    {
+      "name": "bigfile",
+      "description": "CLI that finds large files on your system. Python.",
+      "url": "https://github.com/GreGosPhaTos/bigfile"
+    },
+    {
+      "name": "Zippy",
+      "description": "Archive tool built with Electron.",
+      "url": "https://github.com/GreGosPhaTos/zippy"
+    },
+    {
+      "name": "AWS Lambdas + TypeScript",
+      "description": "Template for TypeScript AWS Lambdas.",
+      "url": "https://github.com/GreGosPhaTos/typescript-lambda"
+    },
+    {
+      "name": "NestJS",
+      "description": "Core contributor to the framework ecosystem.",
+      "url": "https://github.com/nestjs/nest"
+    },
+    {
+      "name": "Medium",
+      "description": "Tech articles and field notes.",
+      "url": "https://medium.com/@adrien.petitjean84"
+    },
+    {
+      "name": "CodePen",
+      "description": "Front-end experiments and demos.",
+      "url": "https://codepen.io/GreGosPhaTos"
+    },
+    {
+      "name": "This site",
+      "description": "webdevelop — Astro, minimal, no tracking.",
+      "url": "https://github.com/GreGosPhaTos/webdevelop.astro"
+    },
+    {
+      "name": "Emma Roussel Naturopath",
+      "description": "Website for naturopath practice.",
+      "url": "https://emma-roussel-naturopathe.com/"
+    }
+  ],
   "footer": {
     "copy": "© 2026 Adrien Petitjean. Build v3.2.0"
   }

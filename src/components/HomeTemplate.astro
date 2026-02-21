@@ -14,6 +14,7 @@ const { content, lang, articles } = Astro.props;
 <Layout
   title={content.meta.title}
   description={content.meta.description}
+  keywords={content.meta.keywords}
   lang={lang}
 >
   <Navigation lang={lang} />
@@ -54,109 +55,23 @@ const { content, lang, articles } = Astro.props;
     <section class="section" id="works">
       <h2 class="section-label">{content.sections.works}</h2>
       <ul class="simple-list projects-list">
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/bigfile"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            bigfile
-          </a>
-          <p>CLI that finds large files on your system. Python.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/zippy"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Zippy
-          </a>
-          <p>Archive tool built with Electron.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/smarthalo-typescript-lambda"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            AWS Lambdas + TypeScript
-          </a>
-          <p>Template for TypeScript AWS Lambdas.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/nestjs/nest"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            NestJS
-          </a>
-          <p>Core contributor to the framework ecosystem.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/pik"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            pik
-          </a>
-          <p>Chrome extension for image processing. Rust / WASM.</p>
-        </li>
-        <li>
-          <a
-            href="https://medium.com/@adrien.petitjean84"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Medium
-          </a>
-          <p>Tech articles and field notes.</p>
-        </li>
-        <li>
-          <a
-            href="https://codepen.io/GreGosPhaTos"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CodePen
-          </a>
-          <p>Front-end experiments and demos.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/astro-lab"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            This site
-          </a>
-          <p>webdevelop — Astro, minimal, no tracking.</p>
-        </li>
-        <li>
-          <a
-            href="https://github.com/GreGosPhaTos/emma-roussel"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Emma Roussel {lang === 'fr' ? 'Naturopathe' : 'Naturopath'}
-          </a>
-          <p>
-            {
-              lang === 'fr'
-                ? 'Site web pour cabinet de naturopathie.'
-                : 'Website for naturopath practice.'
-            }
-          </p>
-        </li>
+        {
+          content.projects.map((project: any) => (
+            <li>
+              <a href={project.url} target="_blank" rel="noopener noreferrer">
+                {project.name}
+              </a>
+              <p>{project.description}</p>
+            </li>
+          ))
+        }
       </ul>
     </section>
 
     <!-- Contact Section -->
     <footer class="footer">
       <div class="contact-links">
-        <a href="mailto:adrien.petitjean84@gmail.com">Email</a>
+        <a href="mailto:adrien@webdevelop.fr">Email</a>
         <span class="sep">/</span>
         <a href="https://github.com/GreGosPhaTos" target="_blank">GitHub</a>
         <span class="sep">/</span>

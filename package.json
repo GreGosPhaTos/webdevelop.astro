@@ -6,9 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "predeploy": "npm run build",
+    "deploy": "gsutil -o \"GSUtil:parallel_process_count=1\" -m rsync -x '.DS_Store' -d -r ./out gs://webdevelop.fr"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.17.1",
+    "typescript": "^5.9.3"
   }
 }

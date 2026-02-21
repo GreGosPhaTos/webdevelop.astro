@@ -11,6 +11,44 @@ const { lang = 'fr' } = Astro.props;
     <a href="/" class="logo">WebDevelop</a>
 
     <div class="nav-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+        <svg
+          class="sun-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg
+          class="moon-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
       <div class="lang-switcher">
         <a href="/" class:list={['lang-link', { active: lang === 'fr' }]}>FR</a>
         <span class="separator">/</span>
@@ -25,9 +63,65 @@ const { lang = 'fr' } = Astro.props;
 <script>
   import { initScrollEffects } from '../utils/effects';
   initScrollEffects();
+
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.dataset.theme;
+      if (currentTheme === 'light') {
+        delete document.documentElement.dataset.theme;
+      } else {
+        document.documentElement.dataset.theme = 'light';
+      }
+    });
+  }
 </script>
 
 <style>
+  .theme-toggle {
+    background: none;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: var(--space-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      color var(--transition-base),
+      transform var(--transition-base);
+    opacity: 0.6;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-accent);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .sun-icon {
+    display: none;
+  }
+  .moon-icon {
+    display: block;
+  }
+
+  :root[data-theme='light'] .sun-icon {
+    display: none;
+  }
+  :root[data-theme='light'] .moon-icon {
+    display: block;
+  }
+
+  /* When in light mode, the button should show the moon icon to switch back to dark */
+  /* If we want it to act as a dark/light toggle strictly: */
+  :root[data-theme='light'] .theme-toggle .sun-icon {
+    display: block;
+  }
+  :root[data-theme='light'] .theme-toggle .moon-icon {
+    display: none;
+  }
+
   .nav {
     position: fixed;
     top: 0;
@@ -58,12 +152,19 @@ const { lang = 'fr' } = Astro.props;
   }
 
   .nav-container {
-    max-width: 1400px;
+    width: 100%;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 var(--space-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
   }
 
   .logo {

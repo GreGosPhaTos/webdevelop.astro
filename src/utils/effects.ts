@@ -3,9 +3,12 @@ export function initGlitchEffect(className: string, lang: string) {
   if (!glitchText) return;
 
   const originalText = glitchText.innerText;
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
 
-  const verbs = lang === 'en' ? ['Build', 'Create', 'Design', 'Scale', 'Ship', 'Solve'] : ['Construire', 'Créer', 'Concevoir', 'Évoluer', 'Expédier', 'Résoudre'];
+  const verbs =
+    lang === 'en'
+    ? ['Build', 'Create', 'Design', 'Scale', 'Ship', 'Solve']
+    : ['Construire', 'Créer', 'Concevoir', 'Évoluer', 'Déployer', 'Résoudre'];
   let currentVerb = '';
 
   glitchText.addEventListener('mouseenter', () => {

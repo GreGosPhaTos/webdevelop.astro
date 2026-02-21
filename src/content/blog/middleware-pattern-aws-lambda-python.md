@@ -1,7 +1,7 @@
 ---
 title: "Middleware Pattern with AWS Lambdas and Python"
 description: "How to implement the middleware pattern in AWS Lambda functions using Python decorators."
-pubDate: 2024-03-15
+pubDate: 2021-07-26
 tags: ["AWS", "Python", "Lambda", "Middleware", "Design Patterns"]
 ---
 

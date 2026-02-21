@@ -1,17 +1,31 @@
 ---
+import { getEntry } from 'astro:content';
+
 interface Props {
   title?: string;
   description?: string;
   keywords?: string;
   lang?: string;
+  /** Optional absolute URL for social share image (og:image, twitter:image) */
+  image?: string;
 }
 
+const langKey = Astro.props.lang === 'en' ? 'en' : 'fr';
+const homepage = await getEntry('homepage', langKey);
+const meta = homepage?.data?.meta;
+
 const {
-  title = 'WebDevelop | Développeur Fullstack',
-  description = "Développeur spécialisé dans l'éco-conception web et les interfaces durables",
-  keywords = 'Adrien Petitjean, développeur web, PHP, SQL, nodeJs, JavaScript, AJAX, web',
+  title = meta?.title ?? 'Adrien Petitjean',
+  description = meta?.description ?? '',
+  keywords = meta?.keywords ?? '',
   lang = 'fr',
+  image,
 } = Astro.props;
+
+const baseUrl = String(Astro.site ?? 'https://webdevelop.fr').replace(/\/$/, '');
+const canonicalURL = `${baseUrl}${Astro.url.pathname || '/'}`;
+const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_GB';
+const siteName = 'webdevelop';
 
 import Terminal from '../components/Terminal.astro';
 ---
@@ -29,8 +43,26 @@ import Terminal from '../components/Terminal.astro';
     <meta name="description" content={description} />
     <meta name="dc.description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="author" content="webdevelop" />
+    <meta name="author" content="Adrien Petitjean" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content={ogLocale} />
+    {image && <meta property="og:image" content={image} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
 
     <!-- Robots & Indexing -->
     <meta name="ROBOTS" content="index, follow" />
@@ -128,6 +160,49 @@ import Terminal from '../components/Terminal.astro';
     /* Effects */
     --glass-blur: 12px;
     --shadow-glow: 0 0 40px -10px var(--color-accent-soft);
+  }
+
+  /* Themes */
+  :root[data-theme='neon'] {
+    --color-accent: #39ff14;
+    --color-accent-secondary: #00ff00;
+    --color-accent-soft: rgba(57, 255, 20, 0.1);
+    --gradient-primary: linear-gradient(135deg, #39ff14 0%, #bcff00 100%);
+  }
+
+  :root[data-theme='cyber'] {
+    --color-bg: #0d0221;
+    --color-surface: #190e4f;
+    --color-accent: #ff00ff;
+    --color-accent-secondary: #00ffff;
+    --color-accent-soft: rgba(255, 0, 255, 0.1);
+    --gradient-primary: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+  }
+
+  :root[data-theme='mono'] {
+    --color-bg: #000000;
+    --color-surface: #111111;
+    --color-accent: #ffffff;
+    --color-accent-secondary: #aaaaaa;
+    --color-accent-soft: rgba(255, 255, 255, 0.1);
+    --gradient-primary: linear-gradient(135deg, #ffffff 0%, #444444 100%);
+    --color-text-secondary: #888888;
+  }
+
+  :root[data-theme='light'] {
+    --color-bg: #f8fafc; /* Slate 50 */
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9; /* Slate 100 */
+    --color-surface-glass: rgba(248, 250, 252, 0.8);
+    --color-text-primary: #0f172a; /* Slate 900 */
+    --color-text-secondary: #475569; /* Slate 600 */
+    --color-text-tertiary: #94a3b8; /* Slate 400 */
+    --color-accent: #4f46e5; /* Indigo 600 */
+    --color-accent-secondary: #0d9488; /* Teal 600 */
+    --color-accent-soft: rgba(79, 70, 229, 0.1);
+    --color-border: rgba(15, 23, 42, 0.1);
+    --color-border-hover: rgba(79, 70, 229, 0.4);
+    --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #0d9488 100%);
   }
 
   /* Reset & Base */
