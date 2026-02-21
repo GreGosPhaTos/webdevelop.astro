@@ -29,6 +29,12 @@ const homepageCollection = defineCollection({
       articles: z.string(),
       works: z.string(),
     }),
+    blog: z.object({
+      title: z.string(),
+      heading: z.string(),
+      subtitle: z.string(),
+      label: z.string(),
+    }).optional(),
     projects: z.array(z.object({
       name: z.string(),
       description: z.string(),

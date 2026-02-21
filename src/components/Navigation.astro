@@ -1,9 +1,11 @@
 ---
 interface Props {
   lang?: string;
+  frHref?: string;
+  enHref?: string;
 }
 
-const { lang = 'fr' } = Astro.props;
+const { lang = 'fr', frHref = '/', enHref = '/en' } = Astro.props;
 ---
 
 <nav class="nav">
@@ -50,19 +52,29 @@ const { lang = 'fr' } = Astro.props;
         </svg>
       </button>
       <div class="lang-switcher">
-        <a href="/" class:list={['lang-link', { active: lang === 'fr' }]}>FR</a>
+        <a href={frHref} class:list={['lang-link', { active: lang === 'fr' }]}>FR</a>
         <span class="separator">/</span>
-        <a href="/en" class:list={['lang-link', { active: lang === 'en' }]}
-          >EN</a
-        >
+        <a href={enHref} class:list={['lang-link', { active: lang === 'en' }]}>EN</a>
       </div>
     </div>
   </div>
 </nav>
 
 <script>
-  import { initScrollEffects } from '../utils/effects';
-  initScrollEffects();
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  }
 
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {

@@ -9,6 +9,9 @@ interface Props {
 }
 
 const { content, lang, articles } = Astro.props;
+
+const blogBase = lang === 'en' ? '/en/blog' : '/blog';
+const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
 ---
 
 <Layout
@@ -38,7 +41,7 @@ const { content, lang, articles } = Astro.props;
         {
           articles.map((post) => (
             <li>
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <a href={`${blogBase}/${getArticleSlug(post.slug)}`}>{post.data.title}</a>
               <time>
                 {new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
                   month: 'short',

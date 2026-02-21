@@ -1,19 +1,19 @@
 ---
 import { getEntry, getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/Navigation.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
 
-const entry = await getEntry('homepage', 'fr');
+const entry = await getEntry('homepage', 'en');
 if (!entry) throw new Error('Homepage entry not found');
 const { data: content } = entry;
 
-const posts = (await getCollection('blog', ({ data, slug }) => data.draft !== true && slug.startsWith('fr/'))).sort(
+const posts = (await getCollection('blog', ({ data, slug }) => data.draft !== true && slug.startsWith('en/'))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
-<Layout title={content.blog?.title ?? 'Écrits | Adrien Petitjean'} description={content.blog?.subtitle} lang="fr">
-  <Navigation lang="fr" frHref="/blog" enHref="/en/blog" />
+<Layout title={content.blog?.title ?? 'Writing | Adrien Petitjean'} description={content.blog?.subtitle} lang="en">
+  <Navigation lang="en" frHref="/blog" enHref="/en/blog" />
 
   <main class="container">
     <header class="page-header">
@@ -27,9 +27,9 @@ const posts = (await getCollection('blog', ({ data, slug }) => data.draft !== tr
         {
           posts.map((post) => (
             <li>
-              <a href={`/blog/${post.slug.replace('fr/', '')}`}>{post.data.title}</a>
+              <a href={`/en/blog/${post.slug.replace('en/', '')}`}>{post.data.title}</a>
               <time datetime={post.data.pubDate.toISOString()}>
-                {new Intl.DateTimeFormat('fr-FR', {
+                {new Intl.DateTimeFormat('en-US', {
                   month: 'short',
                   year: 'numeric',
                 }).format(post.data.pubDate)}

@@ -1,14 +1,14 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Navigation from '../../components/Navigation.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Navigation from '../../../components/Navigation.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts
-    .filter((post) => post.slug.startsWith('fr/'))
+    .filter((post) => post.slug.startsWith('en/'))
     .map((post) => ({
-      params: { slug: post.slug.replace('fr/', '') },
+      params: { slug: post.slug.replace('en/', '') },
       props: { post },
     }));
 }
@@ -24,16 +24,16 @@ const { Content } = await post.render();
 <Layout
   title={`${post.data.title} | Adrien Petitjean`}
   description={post.data.description}
-  lang="fr"
+  lang="en"
 >
-  <Navigation lang="fr" frHref="/blog" enHref="/en/blog" />
+  <Navigation lang="en" frHref="/blog" enHref="/en/blog" />
 
   <article class="post-container">
     <header class="post-header">
       <div class="post-meta">
         <time datetime={post.data.pubDate.toISOString()}>
           {
-            post.data.pubDate.toLocaleDateString('fr-FR', {
+            post.data.pubDate.toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -54,7 +54,7 @@ const { Content } = await post.render();
     </div>
 
     <footer class="post-footer">
-      <a href="/blog" class="back-link">← Retour aux articles</a>
+      <a href="/en/blog" class="back-link">← Back to Writing</a>
     </footer>
   </article>
 </Layout>

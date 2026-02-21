@@ -13,11 +13,7 @@
       <div class="title">adrien@webdevelop: ~</div>
     </div>
     <div class="terminal-body" id="terminal-body">
-      <div class="output">
-        <span class="prompt">➜</span>
-        <span class="command">welcome</span><br />
-        Welcome to the backbone. Type 'help' to see available commands.
-      </div>
+      <div class="output"></div>
       <div class="input-line">
         <span class="prompt">➜</span>
         <input
@@ -47,8 +43,26 @@
   const trigger = document.getElementById('terminal-trigger');
 
   if (overlay && input && body && trigger) {
+    function clearContent(): void {
+      const output = body?.querySelector('.output');
+      output && (output.innerHTML = '');
+      input.value = '';
+    }
+
+    function welcome() {
+      clearContent();
+      const output = document.querySelector('.output');
+      if (!output) return;
+      let content = '<span class="prompt">➜</span> ';
+      content += '<span class="command">welcome</span><br />';
+      content +=
+        "Welcome to the terminal. Type 'help' to see available commands.";
+      output.innerHTML = content;
+    }
+
     // Toggle Terminal
     function toggleTerminal() {
+      console.log('toggleTerminal');
       overlay!.classList.toggle('hidden');
       if (!overlay!.classList.contains('hidden')) {
         input!.focus();
@@ -116,15 +130,11 @@
           } else {
             response = 'Unknown theme. Try: neon, cyber, mono, light, default';
           }
-        } else if (cmd === 'clear') {
-          // Handled below
-        } else if (cmd === 'exit') {
-          toggleTerminal();
         } else {
           response = `command not found: ${cmd}`;
         }
 
-        if (cmd !== 'clear' && cmd !== 'exit') {
+        if (!['clear', 'exit'].includes(cmd)) {
           const responseLine = document.createElement('div');
           responseLine.className = 'response';
           responseLine.textContent = response;
@@ -133,14 +143,18 @@
             document.querySelector('.input-line'),
           );
         } else if (cmd === 'clear') {
-          const outputs = body.querySelectorAll('div:not(.input-line)');
-          outputs.forEach((el) => el.remove());
+          clearContent();
+        } else if (cmd === 'exit') {
+          welcome();
+          toggleTerminal();
         }
 
         input.value = '';
         body.scrollTop = body.scrollHeight;
       }
     });
+
+    welcome();
   }
 </script>
 

@@ -3,8 +3,8 @@ import { getEntry, getCollection } from 'astro:content';
 import HomeTemplate from '../components/HomeTemplate.astro';
 
 const entry = await getEntry('homepage', 'en');
-const articles = await getCollection('blog', ({ data }) => {
-  return data.draft !== true;
+const articles = await getCollection('blog', ({ data, slug }) => {
+  return data.draft !== true && slug.startsWith('en/');
 });
 
 // Sort articles by date descending

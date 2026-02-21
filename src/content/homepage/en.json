@@ -14,6 +14,12 @@
     "articles": "Articles",
     "works": "Works & Projects"
   },
+  "blog": {
+    "title": "Writing | Adrien Petitjean",
+    "heading": "Writing",
+    "subtitle": "Field notes on engineering, systems, and strategy.",
+    "label": "Articles"
+  },
   "projects": [
     {
       "name": "Pik (WIP)",

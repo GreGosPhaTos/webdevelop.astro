@@ -14,6 +14,12 @@
     "articles": "Articles",
     "works": "Travaux & Projets"
   },
+  "blog": {
+    "title": "Écrits | Adrien Petitjean",
+    "heading": "Écrits",
+    "subtitle": "Notes sur l'ingénierie, les systèmes et la tech.",
+    "label": "Articles"
+  },
   "projects": [
     {
       "name": "Pik (WIP)",
