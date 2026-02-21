@@ -1,3 +1,0 @@
- - try background
- - verifier les liens
- - traduire

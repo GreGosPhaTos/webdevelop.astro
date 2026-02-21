@@ -7,8 +7,8 @@
   "hero": {
     "firstName": "Adrien",
     "lastName": "Petitjean",
-    "tagline": "Staff Software Engineer @ <a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>. Architecting resilient systems and leading technical strategy through 15 years of scale.",
-    "glitchVerbs": ["Build", "Create", "Design", "Scale", "Ship", "Solve"]
+    "tagline": "Staff Software Engineer @<a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>.<br />Architecting resilient systems and technical strategy.<br />Previously at Unity and Shutterstock.",
+    "glitchVerbs": ["Build", "Create", "Design", "Evolve", "Deploy", "Solve"]
   },
   "sections": {
     "articles": "Articles",
