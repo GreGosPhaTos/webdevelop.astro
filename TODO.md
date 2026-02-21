@@ -1,0 +1,7 @@
+ - try background
+ - ne faire qu'un layout
+ - verifier les liens
+ - recadrer les lien emma
+ - pousser le lien de Emma en bas
+ - traduire
+ - the header

@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Adrien Petitjean — Staff Software Engineer",
+    "description": "Staff Software Engineer chez Lightspeed. Architecture de systèmes résilients et pilotage de stratégie technique."
+  },
+  "hero": {
+    "firstName": "Adrien",
+    "lastName": "Petitjean",
+    "tagline": "Staff Software Engineer @<a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>.<br />Architecte de systèmes résilients et stratégie technique.<br />Précédemment chez Unity et Shutterstock."
+  },
+  "sections": {
+    "articles": "Articles",
+    "works": "Travaux & Projets"
+  },
+  "footer": {
+    "copy": "© 2026 Adrien Petitjean. Build v3.2.0"
+  }
+}

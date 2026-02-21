@@ -1,0 +1,354 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from './Navigation.astro';
+
+interface Props {
+  content: any;
+  lang: string;
+  articles: any[];
+}
+
+const { content, lang, articles } = Astro.props;
+---
+
+<Layout
+  title={content.meta.title}
+  description={content.meta.description}
+  lang={lang}
+>
+  <Navigation lang={lang} />
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          {content.hero.firstName}
+          <span class="glitch-text text-gradient">{content.hero.lastName}</span>
+        </h1>
+        <p class="hero-tagline" set:html={content.hero.tagline} />
+      </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="section" id="articles">
+      <h2 class="section-label">{content.sections.articles}</h2>
+      <ul class="simple-list articles-list">
+        {
+          articles.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <time>
+                {new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
+                  month: 'short',
+                  year: 'numeric',
+                }).format(post.data.pubDate)}
+              </time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Works & Projects Section -->
+    <section class="section" id="works">
+      <h2 class="section-label">{content.sections.works}</h2>
+      <ul class="simple-list projects-list">
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/bigfile"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            bigfile
+          </a>
+          <p>CLI that finds large files on your system. Python.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/zippy"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Zippy
+          </a>
+          <p>Archive tool built with Electron.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/smarthalo-typescript-lambda"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            AWS Lambdas + TypeScript
+          </a>
+          <p>Template for TypeScript AWS Lambdas.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/nestjs/nest"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            NestJS
+          </a>
+          <p>Core contributor to the framework ecosystem.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/pik"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            pik
+          </a>
+          <p>Chrome extension for image processing. Rust / WASM.</p>
+        </li>
+        <li>
+          <a
+            href="https://medium.com/@adrien.petitjean84"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Medium
+          </a>
+          <p>Tech articles and field notes.</p>
+        </li>
+        <li>
+          <a
+            href="https://codepen.io/GreGosPhaTos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CodePen
+          </a>
+          <p>Front-end experiments and demos.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/astro-lab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            This site
+          </a>
+          <p>webdevelop — Astro, minimal, no tracking.</p>
+        </li>
+        <li>
+          <a
+            href="https://github.com/GreGosPhaTos/emma-roussel"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Emma Roussel {lang === 'fr' ? 'Naturopathe' : 'Naturopath'}
+          </a>
+          <p>
+            {
+              lang === 'fr'
+                ? 'Site web pour cabinet de naturopathie.'
+                : 'Website for naturopath practice.'
+            }
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <footer class="footer">
+      <div class="contact-links">
+        <a href="mailto:adrien.petitjean84@gmail.com">Email</a>
+        <span class="sep">/</span>
+        <a href="https://github.com/GreGosPhaTos" target="_blank">GitHub</a>
+        <span class="sep">/</span>
+        <a
+          href="https://www.linkedin.com/in/adrien-petitjean-10916255"
+          target="_blank">LinkedIn</a
+        >
+      </div>
+      <p class="footer-copy">{content.footer.copy}</p>
+    </footer>
+  </main>
+
+  <script>
+    import { initGlitchEffect } from '../utils/effects';
+    // Get lang from html tag
+    const lang = document.documentElement.lang;
+    initGlitchEffect('.glitch-text', lang);
+  </script>
+</Layout>
+
+<style>
+  /* Hero */
+  .hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-xl);
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    overflow: visible;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  .hero-tagline {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
+  .hero-tagline :global(a) {
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+    transition:
+      border-color var(--transition-base),
+      color var(--transition-base);
+  }
+
+  .hero-tagline :global(a:hover) {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  /* Container */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  /* Section Layout */
+  .section {
+    padding: var(--space-lg) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .section-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    padding-left: var(--space-sm);
+    border-left: 3px solid var(--color-accent);
+    letter-spacing: normal;
+    text-transform: none;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: var(--space-md) 0;
+    }
+  }
+
+  /* Simple List System */
+  .simple-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .articles-list {
+    gap: var(--space-sm);
+  }
+
+  .articles-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+  }
+
+  .articles-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .articles-list time {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+  }
+
+  .projects-list {
+    gap: var(--space-md);
+  }
+
+  .projects-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .projects-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    width: fit-content;
+  }
+
+  .projects-list p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .contact-links {
+    font-size: 1.25rem;
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .sep {
+    opacity: 0.2;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 900px) {
+    .section {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .section-label {
+      padding-top: 0;
+    }
+
+    .hero {
+      height: 70vh;
+    }
+  }
+</style>

@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Adrien Petitjean — Staff Software Engineer",
+    "description": "Staff Software Engineer at Lightspeed. Building resilient systems and technical strategies."
+  },
+  "hero": {
+    "firstName": "Adrien",
+    "lastName": "Petitjean",
+    "tagline": "Staff Software Engineer @ <a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>. Architecting resilient systems and leading technical strategy through 15 years of scale."
+  },
+  "sections": {
+    "articles": "Articles",
+    "works": "Works & Projects"
+  },
+  "footer": {
+    "copy": "© 2026 Adrien Petitjean. Build v3.2.0"
+  }
+}
