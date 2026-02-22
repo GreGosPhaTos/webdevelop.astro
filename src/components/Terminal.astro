@@ -44,6 +44,14 @@
 
   if (overlay && input && body && trigger) {
     function clearContent(): void {
+      Array.from(body!.children).forEach((child) => {
+        if (
+          !child.classList.contains('output') &&
+          !child.classList.contains('input-line')
+        ) {
+          child.remove();
+        }
+      });
       const output = body?.querySelector('.output');
       output && (output.innerHTML = '');
       input.value = '';
@@ -83,10 +91,12 @@
 
     trigger.addEventListener('click', toggleTerminal);
 
-    // Close on click outside
+    // Close on click outside, focus input on click inside
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         toggleTerminal();
+      } else {
+        input.focus();
       }
     });
 

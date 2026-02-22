@@ -48,7 +48,7 @@ const posts = (await getCollection('blog', ({ data, slug }) => data.draft !== tr
         <span class="sep">/</span>
         <a href="https://www.linkedin.com/in/adrien-petitjean-10916255" target="_blank">LinkedIn</a>
       </div>
-      <p class="footer-copy">{content.footer.copy}</p>
+      <p class="footer-copy">© {new Date().getFullYear()} {content.footer.copy}</p>
     </footer>
   </main>
 </Layout>
