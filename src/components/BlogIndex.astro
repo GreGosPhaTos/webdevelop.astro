@@ -1,0 +1,199 @@
+---
+import { getEntry, getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+interface Props {
+  lang: 'fr' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const entry = await getEntry('homepage', lang);
+if (!entry) throw new Error('Homepage entry not found');
+const { data: content } = entry;
+
+const locale = lang === 'fr' ? 'fr-FR' : 'en-US';
+const slugPrefix = `${lang}/`;
+const urlPrefix = lang === 'fr' ? '/blog/' : '/en/blog/';
+
+const posts = (
+  await getCollection(
+    'blog',
+    ({ data, slug }) => data.draft !== true && slug.startsWith(slugPrefix),
+  )
+).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout
+  title={content.blog?.title ??
+    (lang === 'fr'
+      ? 'Écrits | Adrien Petitjean'
+      : 'Writing | Adrien Petitjean')}
+  description={content.blog?.subtitle}
+  lang={lang}
+>
+  <Navigation lang={lang} frHref="/blog" enHref="/en/blog" />
+
+  <main class="container">
+    <header class="page-header">
+      <h1 class="page-title">{content.blog?.heading}</h1>
+      <p class="page-subtitle">{content.blog?.subtitle}</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-label">{content.blog?.label}</h2>
+      <ul class="simple-list articles-list">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`${urlPrefix}${post.slug.replace(slugPrefix, '')}`}>
+                {post.data.title}
+              </a>
+              <time datetime={post.data.pubDate.toISOString()}>
+                {new Intl.DateTimeFormat(locale, {
+                  month: 'short',
+                  year: 'numeric',
+                }).format(post.data.pubDate)}
+              </time>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <div class="contact-links">
+        <a href="mailto:adrien@webdevelop.fr">Email</a>
+        <span class="sep">/</span>
+        <a href="https://github.com/GreGosPhaTos" target="_blank">GitHub</a>
+        <span class="sep">/</span>
+        <a
+          href="https://www.linkedin.com/in/adrien-petitjean-10916255"
+          target="_blank">LinkedIn</a
+        >
+      </div>
+      <p class="footer-copy">
+        © {new Date().getFullYear()}
+        {content.footer.copy}
+      </p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .page-header {
+    padding-top: 25vh;
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-xl);
+  }
+
+  .page-title {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .section {
+    padding: var(--space-lg) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .section-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    padding-left: var(--space-sm);
+    border-left: 3px solid var(--color-accent);
+    letter-spacing: normal;
+    text-transform: none;
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+
+  .simple-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .articles-list {
+    gap: var(--space-sm);
+  }
+
+  .articles-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+  }
+
+  .articles-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    transition: color var(--transition-base) ease;
+  }
+
+  .articles-list a:hover {
+    color: var(--color-accent);
+  }
+
+  .articles-list time {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+  }
+
+  .footer {
+    padding: var(--space-lg) 0 var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .contact-links {
+    font-size: 1.25rem;
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+
+  .sep {
+    opacity: 0.2;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding-top: 15vh;
+    }
+
+    .articles-list li {
+      flex-direction: column-reverse;
+      gap: 0.25rem;
+    }
+  }
+</style>

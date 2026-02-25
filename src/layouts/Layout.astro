@@ -22,7 +22,10 @@ const {
   image,
 } = Astro.props;
 
-const baseUrl = String(Astro.site ?? 'https://webdevelop.fr').replace(/\/$/, '');
+const baseUrl = String(Astro.site ?? 'https://webdevelop.fr').replace(
+  /\/$/,
+  '',
+);
 const canonicalURL = `${baseUrl}${Astro.url.pathname || '/'}`;
 const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_GB';
 const siteName = 'webdevelop';
@@ -59,7 +62,10 @@ import Terminal from '../components/Terminal.astro';
     {image && <meta property="og:image" content={image} />}
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta
+      name="twitter:card"
+      content={image ? 'summary_large_image' : 'summary'}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}

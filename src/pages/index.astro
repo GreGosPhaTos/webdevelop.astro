@@ -7,11 +7,10 @@ const articles = await getCollection('blog', ({ data, slug }) => {
   return data.draft !== true && slug.startsWith('fr/');
 });
 
-// Sort articles by date descending
 articles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 if (!entry) {
-  throw new Error('Homepage entry not found');
+  throw new Error('Blog Post non trouvé');
 }
 
 const { data: content } = entry;
