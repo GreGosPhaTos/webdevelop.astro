@@ -294,13 +294,14 @@ import Terminal from "../components/Terminal.astro";
 
       /* Liens minimalistes */
       a {
-        color: inherit;
+        color: var(--color-accent);
         text-decoration: none;
-        transition: opacity var(--transition-base);
+        transition: opacity var(--transition-base), color var(--transition-base);
       }
 
       a:hover {
-        opacity: 0.6;
+        opacity: 0.8;
+        color: var(--color-accent-secondary);
       }
 
       /* Container */

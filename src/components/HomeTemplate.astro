@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from './Navigation.astro';
+import Layout from "../layouts/Layout.astro";
+import Navigation from "./Navigation.astro";
 
 interface Props {
   content: any;
@@ -10,8 +10,8 @@ interface Props {
 
 const { content, lang, articles } = Astro.props;
 
-const blogBase = lang === 'en' ? '/en/blog' : '/blog';
-const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
+const blogBase = lang === "en" ? "/en/blog" : "/blog";
+const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, "");
 ---
 
 <Layout
@@ -30,7 +30,7 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
           {content.hero.firstName}
           <span class="glitch-text text-gradient">{content.hero.lastName}</span>
         </h1>
-        <p class="hero-tagline" set:html={content.hero.tagline} />
+        <p class="hero-tagline" set:html={content.hero.tagline}></p>
       </div>
     </section>
 
@@ -41,11 +41,13 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
         {
           articles.map((post) => (
             <li>
-              <a href={`${blogBase}/${getArticleSlug(post.slug)}`}>{post.data.title}</a>
+              <a href={`${blogBase}/${getArticleSlug(post.slug)}`}>
+                {post.data.title}
+              </a>
               <time>
-                {new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-US', {
-                  month: 'short',
-                  year: 'numeric',
+                {new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-US", {
+                  month: "short",
+                  year: "numeric",
                 }).format(post.data.pubDate)}
               </time>
             </li>
@@ -83,7 +85,10 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
           target="_blank">LinkedIn</a
         >
       </div>
-      <p class="footer-copy">© {new Date().getFullYear()} {content.footer.copy}</p>
+      <p class="footer-copy">
+        © {new Date().getFullYear()}
+        {content.footer.copy}
+      </p>
     </footer>
   </main>
 
@@ -91,21 +96,28 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
     // Glitch effect for the text
 
     (function (className: string, lang: string) {
-
       const glitchText = document.querySelector(className) as HTMLElement;
       if (!glitchText) return;
 
       const originalText = glitchText.innerText;
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
+      const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
 
       const verbs =
-        lang === 'en'
-        ? ['Build', 'Create', 'Design', 'Scale', 'Ship', 'Solve']
-        : ['Construire', 'Créer', 'Concevoir', 'Évoluer', 'Déployer', 'Résoudre'];
-      let currentVerb = '';
+        lang === "en"
+          ? ["Build", "Create", "Design", "Scale", "Ship", "Solve"]
+          : [
+              "Construire",
+              "Créer",
+              "Concevoir",
+              "Évoluer",
+              "Déployer",
+              "Résoudre",
+            ];
+      let currentVerb = "";
       let interval: number | undefined;
 
-      glitchText.addEventListener('mouseenter', () => {
+      glitchText.addEventListener("mouseenter", () => {
         if (interval) {
           clearInterval(interval);
         }
@@ -114,20 +126,20 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
         currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
         interval = setInterval(() => {
           glitchText.innerText = currentVerb
-            .split('')
+            .split("")
             .map((_letter, index) => {
               if (index < iterations) return currentVerb[index];
               return chars[Math.floor(Math.random() * chars.length)];
             })
-            .join('');
+            .join("");
 
           if (iterations >= currentVerb.length) {
             clearInterval(interval);
             glitchText.innerText = currentVerb;
-            glitchText.style.color = 'var(--color-accent)';
+            glitchText.style.color = "var(--color-accent)";
             setTimeout(() => {
               glitchText.innerText = originalText;
-              glitchText.style.color = '';
+              glitchText.style.color = "";
             }, 1000);
           }
           iterations += 1 / 3;
@@ -168,15 +180,12 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
   }
 
   .hero-tagline :global(a) {
-    color: var(--color-text-primary);
     border-bottom: 1px solid var(--color-border);
-    transition:
-      border-color var(--transition-base),
+    transition: border-color var(--transition-base),
       color var(--transition-base);
   }
 
   .hero-tagline :global(a:hover) {
-    color: var(--color-accent);
     border-color: var(--color-accent);
   }
 
@@ -237,7 +246,6 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
   .articles-list a {
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--color-text-primary);
   }
 
   .articles-list time {
@@ -260,7 +268,6 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, '');
   .projects-list a {
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--color-text-primary);
     width: fit-content;
   }
 
