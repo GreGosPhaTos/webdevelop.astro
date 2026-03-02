@@ -7,6 +7,7 @@ const blogCollection = defineCollection({
     pubDate: z.date(),
     author: z.string().default('Adrien Petitjean'),
     tags: z.array(z.string()),
+    keywords: z.array(z.string()).optional(),
     draft: z.boolean().default(false),
   }),
 });
@@ -17,7 +18,7 @@ const homepageCollection = defineCollection({
     meta: z.object({
       title: z.string(),
       description: z.string(),
-      keywords: z.string().optional(),
+      keywords: z.array(z.string()).optional(),
     }),
     hero: z.object({
       firstName: z.string(),

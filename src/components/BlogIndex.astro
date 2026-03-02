@@ -1,35 +1,35 @@
 ---
-import { getEntry, getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import { getEntry, getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
 
 interface Props {
-  lang: 'fr' | 'en';
+  lang: "fr" | "en";
 }
 
 const { lang } = Astro.props;
 
-const entry = await getEntry('homepage', lang);
-if (!entry) throw new Error('Homepage entry not found');
+const entry = await getEntry("homepage", lang);
+if (!entry) throw new Error("Homepage entry not found");
 const { data: content } = entry;
 
-const locale = lang === 'fr' ? 'fr-FR' : 'en-US';
+const locale = lang === "fr" ? "fr-FR" : "en-US";
 const slugPrefix = `${lang}/`;
-const urlPrefix = lang === 'fr' ? '/blog/' : '/en/blog/';
+const urlPrefix = lang === "fr" ? "/blog/" : "/en/blog/";
 
 const posts = (
   await getCollection(
-    'blog',
-    ({ data, slug }) => data.draft !== true && slug.startsWith(slugPrefix),
+    "blog",
+    ({ data, slug }) => data.draft !== true && slug.startsWith(slugPrefix)
   )
 ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout
   title={content.blog?.title ??
-    (lang === 'fr'
-      ? 'Écrits | Adrien Petitjean'
-      : 'Writing | Adrien Petitjean')}
+    (lang === "fr"
+      ? "Écrits | Adrien Petitjean"
+      : "Writing | Adrien Petitjean")}
   description={content.blog?.subtitle}
   lang={lang}
 >
@@ -47,13 +47,14 @@ const posts = (
         {
           posts.map((post) => (
             <li>
-              <a href={`${urlPrefix}${post.slug.replace(slugPrefix, '')}`}>
+              <a href={`${urlPrefix}${post.slug.replace(slugPrefix, "")}`}>
                 {post.data.title}
               </a>
               <time datetime={post.data.pubDate.toISOString()}>
                 {new Intl.DateTimeFormat(locale, {
-                  month: 'short',
-                  year: 'numeric',
+                  month: "short",
+                  year: "numeric",
+                  timeZone: "UTC",
                 }).format(post.data.pubDate)}
               </time>
             </li>

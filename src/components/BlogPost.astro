@@ -1,24 +1,27 @@
 ---
-import { type CollectionEntry } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
+import { type CollectionEntry } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
-  lang: 'fr' | 'en';
+  post: CollectionEntry<"blog">;
+  lang: "fr" | "en";
 }
 
 const { post, lang } = Astro.props;
 const { Content } = await post.render();
 
-const locale = lang === 'fr' ? 'fr-FR' : 'en-US';
-const backLink = lang === 'fr' ? '/blog' : '/en/blog';
-const backText = lang === 'fr' ? '← Retour aux articles' : '← Back to Writing';
+const locale = lang === "fr" ? "fr-FR" : "en-US";
+const backLink = lang === "fr" ? "/blog" : "/en/blog";
+const backText = lang === "fr" ? "← Retour aux articles" : "← Back to Writing";
 ---
 
 <Layout
   title={`${post.data.title} | Adrien Petitjean`}
   description={post.data.description}
+  keywords={post.data.keywords
+    ? post.data.keywords.join(", ")
+    : post.data.tags.join(", ")}
   lang={lang}
 >
   <Navigation lang={lang} frHref="/blog" enHref="/en/blog" />
@@ -29,9 +32,10 @@ const backText = lang === 'fr' ? '← Retour aux articles' : '← Back to Writin
         <time datetime={post.data.pubDate.toISOString()}>
           {
             post.data.pubDate.toLocaleDateString(locale, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "UTC",
             })
           }
         </time>

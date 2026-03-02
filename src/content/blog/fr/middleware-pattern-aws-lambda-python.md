@@ -3,6 +3,7 @@ title: "Le Pattern Middleware avec AWS Lambda et Python"
 description: "Comment implémenter le pattern middleware dans les fonctions AWS Lambda avec les décorateurs Python."
 pubDate: 2021-07-26
 tags: ["AWS", "Python", "Lambda", "Middleware", "Design Patterns"]
+keywords: ["AWS Lambda", "Python", "Middleware", "Design Patterns", "Décorateurs", "Fonctions Lambda", "Gestion d'erreurs", "Logging", "Architecture logicielle", "Développement cloud", "Serverless", "AWS ecosystem"]
 ---
 
 > *Cet article est également disponible sur [Medium](https://medium.com/@adrien.petitjean84/middleware-pattern-with-aws-lambdas-and-python-bee87667d908).*

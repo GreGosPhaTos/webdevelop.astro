@@ -3,6 +3,7 @@ title: "Docker MCP Toolkit : Connecter Facilement vos Agents IA à vos Outils"
 description: "Découvrez comment le Docker MCP Toolkit simplifie la gestion des serveurs Model Context Protocol grâce à des conteneurs sécurisés et isolés."
 pubDate: 2026-03-01
 tags: ["Docker", "MCP", "IA", "LLM", "DevTools"]
+keywords: ["Docker MCP Toolkit", "Model Context Protocol", "Docker Desktop", "IA", "LLM", "DevTools", "Sécurité", "Isolation", "Reproductibilité", "Portabilité", "Gestion des ressources", "Gestion des versions", "FastMCP", "Claude", "Cursor"]
 ---
 
 Le Model Context Protocol (MCP) devient rapidement le standard pour connecter les agents IA aux outils et données du monde réel. Cependant, la gestion locale de ces serveurs peut souvent entraîner des conflits d'environnement, des problèmes de sécurité et des frictions lors du déploiement.

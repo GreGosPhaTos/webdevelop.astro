@@ -2,13 +2,30 @@
   "meta": {
     "title": "Adrien Petitjean — Staff Software Engineer",
     "description": "Staff Software Engineer chez Lightspeed. Architecture de systèmes résilients et pilotage de stratégie technique.",
-    "keywords": "Adrien Petitjean, Staff Software Engineer, Lightspeed, Unity, développeur full-stack, architecture systèmes, stratégie technique, NestJS, TypeScript"
+    "keywords": [
+      "Adrien Petitjean",
+      "Staff Software Engineer",
+      "Lightspeed",
+      "Unity",
+      "développeur full-stack",
+      "architecture systèmes",
+      "stratégie technique",
+      "NestJS",
+      "TypeScript"
+    ]
   },
   "hero": {
     "firstName": "Adrien",
     "lastName": "Petitjean",
     "tagline": "Staff Software Engineer @<a href=\"https://www.lightspeedhq.com/\" target=\"_blank\">Lightspeed</a>.<br />Architecte de systèmes résilients et stratégie technique.<br />Précédemment chez Unity et Shutterstock.",
-    "glitchVerbs": ["Construire", "Créer", "Concevoir", "Évoluer", "Déployer", "Résoudre"]
+    "glitchVerbs": [
+      "Construire",
+      "Créer",
+      "Concevoir",
+      "Évoluer",
+      "Déployer",
+      "Résoudre"
+    ]
   },
   "sections": {
     "articles": "Articles",

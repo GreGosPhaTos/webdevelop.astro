@@ -17,7 +17,7 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, "");
 <Layout
   title={content.meta.title}
   description={content.meta.description}
-  keywords={content.meta.keywords}
+  keywords={content.meta.keywords?.join(", ")}
   lang={lang}
 >
   <Navigation lang={lang} />
@@ -48,6 +48,7 @@ const getArticleSlug = (slug: string) => slug.replace(/^(fr|en)\//, "");
                 {new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-US", {
                   month: "short",
                   year: "numeric",
+                  timeZone: "UTC",
                 }).format(post.data.pubDate)}
               </time>
             </li>
