@@ -6,9 +6,31 @@ tags: ["Docker", "MCP", "IA", "LLM", "DevTools"]
 keywords: ["Docker MCP Toolkit", "Model Context Protocol", "Docker Desktop", "IA", "LLM", "DevTools", "Sécurité", "Isolation", "Reproductibilité", "Portabilité", "Gestion des ressources", "Gestion des versions", "FastMCP", "Claude", "Cursor"]
 ---
 
+<div style="text-align: justify;">
+
 Le Model Context Protocol (MCP) devient rapidement le standard pour connecter les agents IA aux outils et données du monde réel. Cependant, la gestion locale de ces serveurs peut souvent entraîner des conflits d'environnement, des problèmes de sécurité et des frictions lors du déploiement.
 
+Avant l'existence du MCP, connecter un modèle d'IA à des outils externes était laborieux. Pour chaque outil que ce soit MongoDB, Obsidian ou Gmail il fallait écrire du **code glue personnalisé** à partir de zéro. Chaque intégration avait sa propre logique, son propre format, son propre coût de maintenance. Si vous aviez 5 outils ? Vous aviez 5 intégrations complètement différentes à construire et à maintenir. C'était désordonné, chronophage et cela ne passait pas du tout à l'échelle.
+
+<img src="/without.png" alt="Illustration d'intégrations complexes sans MCP" width="100%" style="display: block; margin: 2rem auto 3rem auto;" />
+
+C'est exactement le problème que le MCP résout. Le MCP qui signifie **Model Context Protocol** est un standard ouvert qui agit comme un pont universel entre votre modèle d'IA et n'importe quel outil externe. Au lieu d'écrire du code personnalisé pour chaque intégration, vous construisez simplement **un seul serveur MCP par outil**, et votre IA parle le même langage à tous. MongoDB, Obsidian, Gmail ils se branchent tous de la même manière. Et le meilleur ? Vous pouvez construire votre **propre serveur MCP personnalisé** pour n'importe quelle capacité dont vous avez besoin.
+
+<img src="/with.png" alt="Illustration d'une architecture propre avec MCP" width="100%" style="display: block; margin: 2rem auto 3rem auto;" />
+
 C'est ici qu'intervient le **[Docker MCP Toolkit](https://www.docker.com/products/docker-desktop/)**.
+
+<div style="aspect-ratio: 16 / 9; width: 100%; margin: 2rem auto 3rem auto;">
+  <iframe
+    src="https://www.youtube.com/embed/aTREM69F7Bo?si=7zaiNEVCGyb5-AJS"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    style="width: 100%; height: 100%; border-radius: 8px;"
+  ></iframe>
+</div>
 
 ## Qu'est-ce que le Docker MCP Toolkit ?
 
@@ -51,3 +73,5 @@ Ce dépôt propose un script d'installation interactif qui vous aide à :
 En combinant la puissance de Docker avec la flexibilité du MCP, vous pouvez construire des outils puissants, sécurisés et portables pour améliorer vos workflows IA.
 
 Bon code !
+
+</div>
