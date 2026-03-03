@@ -7,6 +7,8 @@ tags: ["Docker", "MCP", "AI", "LLM", "DevTools"]
 
 <div style="text-align: justify;">
 
+> *This article is also available on [Medium](https://medium.com/p/2dcd28aaeadb).*
+
 The Model Context Protocol (MCP) is rapidly becoming the standard for connecting AI agents to real-world tools and data. However, managing these servers locally can often lead to environment conflicts, security concerns, and deployment friction.
 
 Before MCP existed, connecting an AI model to external tools was painful. For every single tool whether it's MongoDB, Obsidian, or Gmail you had to write **custom glue code** from scratch. Each integration had its own logic, its own format, its own maintenance cost. So if you had 5 tools? You had 5 completely different integrations to build and maintain. It was messy, time-consuming, and didn't scale at all.

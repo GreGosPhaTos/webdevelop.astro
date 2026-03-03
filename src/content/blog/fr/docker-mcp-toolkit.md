@@ -8,6 +8,8 @@ keywords: ["Docker MCP Toolkit", "Model Context Protocol", "Docker Desktop", "IA
 
 <div style="text-align: justify;">
 
+> *Cet article est également disponible sur [Medium](https://medium.com/p/2dcd28aaeadb).*
+
 Le Model Context Protocol (MCP) devient rapidement le standard pour connecter les agents IA aux outils et données du monde réel. Cependant, la gestion locale de ces serveurs peut souvent entraîner des conflits d'environnement, des problèmes de sécurité et des frictions lors du déploiement.
 
 Avant l'existence du MCP, connecter un modèle d'IA à des outils externes était laborieux. Pour chaque outil que ce soit MongoDB, Obsidian ou Gmail il fallait écrire du **code glue personnalisé** à partir de zéro. Chaque intégration avait sa propre logique, son propre format, son propre coût de maintenance. Si vous aviez 5 outils ? Vous aviez 5 intégrations complètement différentes à construire et à maintenir. C'était désordonné, chronophage et cela ne passait pas du tout à l'échelle.
