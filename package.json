@@ -9,8 +9,7 @@
     "astro": "astro",
     "clean": "rm -rf dist",
     "predeploy": "npm run clean && npm run build",
-    "deploy": "gcloud storage rsync ./dist gs://webdevelop.fr --recursive --delete-unmatched-destination-objects && npm run set-cache",
-    "set-cache": "gcloud storage objects update gs://webdevelop.fr/**/*.html --cache-control='no-cache, no-store, max-age=0, must-revalidate' && gcloud storage objects update gs://webdevelop.fr/_astro/* --cache-control='public, max-age=31536000, immutable'"
+    "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
